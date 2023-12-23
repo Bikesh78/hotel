@@ -1,14 +1,23 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { User } from "./User.js";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import type { User } from "./User.js";
 
-@Entity({ name: "user_role" })
-export class UserRole {
+@Entity()
+export class UserRole extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column("text")
+  @Column({
+    type: "varchar",
+    unique: true,
+  })
   role: string;
 
-  @OneToMany(() => User, (user) => user.role)
-  user: User[];
+  @OneToMany("User", (user: User) => user.role)
+  user: User;
 }

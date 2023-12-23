@@ -3,7 +3,7 @@ import { DataSource } from "typeorm";
 import { DB_PASSWORD, DB_USER } from "./config.js";
 import "reflect-metadata";
 import { UserAndRoleCreate1703260907295 } from "../migration/1703260907295-UserAndRoleCreate.js";
-import { migrations } from "../migration/index.js";
+// import { migrations } from "../migration/index.js";
 
 export const appDataSource = new DataSource({
   type: "mysql",
@@ -13,9 +13,10 @@ export const appDataSource = new DataSource({
   database: "hotel",
   port: 3306,
   entities: [User, UserRole],
-  synchronize: false,
+  synchronize: true,
   logging: false,
-  migrations: migrations,
+  // migrations: migrations,
+  migrations: ["migration/*.ts"],
   // migrationsTableName: "custom_migration_table",
   // entitySkipConstructor: true, // Indicates that TypeORM will skip constructors when deserializing entities from the database
 });
