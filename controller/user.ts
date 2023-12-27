@@ -7,7 +7,7 @@ import { validate } from "class-validator";
 export const createRole = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   try {
     const body = req.body;
@@ -27,7 +27,7 @@ export const createRole = async (
 export const getRoles = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   try {
     const roles = await UserRole.find();
@@ -42,7 +42,7 @@ export const getRoles = async (
 export const createUser = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   try {
     console.log("body", req.body);
@@ -85,7 +85,7 @@ export const createUser = async (
 export const getUsers = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   try {
     const users = await User.find({
@@ -101,28 +101,6 @@ export const getUsers = async (
       // select: ["id", "username", "password", "role"],
     });
     res.status(200).json({ users });
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const login = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  try {
-    const body = req.body;
-    const { username, password } = body;
-
-    const user = User.findOne({
-      where: {
-        username: username,
-      },
-    });
-    console.log("user", user);
-
-    // const isPasswordCorrect = await bcrypt.compare();
   } catch (error) {
     next(error);
   }
