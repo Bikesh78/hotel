@@ -2,12 +2,12 @@
   "name": "hotel",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/index.js",
-    "dev": "nodemon index.ts",
+    "start": "ts-node-esm index.ts",
+    "dev": "nodemon -x ts-node-esm index.ts",
     "migration:up": "npx typeorm-ts-node-esm migration:run  -d utils/db.ts",
     "migration:generate": "npx typeorm-ts-node-esm migration:generate  -d utils/db.ts"
   },

@@ -4,7 +4,11 @@ import bcrypt from "bcrypt";
 import { User } from "../entity/User.js";
 import { validate } from "class-validator";
 
-export const createRole = async (req: Request, res: Response, next: Next) => {
+export const createRole = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const body = req.body;
     const userRole = new UserRole();
@@ -23,7 +27,7 @@ export const createRole = async (req: Request, res: Response, next: Next) => {
 export const getRoles = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const roles = await UserRole.find();
@@ -38,9 +42,10 @@ export const getRoles = async (
 export const createUser = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
+    console.log("body", req.body);
     const body = req.body;
     const { username, password, confirmPassword, role } = body;
 
@@ -80,17 +85,44 @@ export const createUser = async (
 export const getUsers = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const users = await User.find({
       relations: {
         role: true,
       },
+      select: {
+        role: {
+          role: true,
+        },
+      },
       // relations: ["role"],
-      // select: ["id", "username", "password"],
+      // select: ["id", "username", "password", "role"],
     });
     res.status(200).json({ users });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const body = req.body;
+    const { username, password } = body;
+
+    const user = User.findOne({
+      where: {
+        username: username,
+      },
+    });
+    console.log("user", user);
+
+    // const isPasswordCorrect = await bcrypt.compare();
   } catch (error) {
     next(error);
   }

@@ -2,7 +2,6 @@ import { User, UserRole } from "../entity/index.js";
 import { DataSource } from "typeorm";
 import { DB_PASSWORD, DB_USER } from "./config.js";
 import "reflect-metadata";
-import { UserAndRoleCreate1703260907295 } from "../migration/1703260907295-UserAndRoleCreate.js";
 // import { migrations } from "../migration/index.js";
 
 export const appDataSource = new DataSource({
@@ -13,7 +12,8 @@ export const appDataSource = new DataSource({
   database: "hotel",
   port: 3306,
   entities: [User, UserRole],
-  synchronize: true,
+  // synchronize: true,
+  synchronize: false,
   logging: false,
   // migrations: migrations,
   migrations: ["migration/*.ts"],
