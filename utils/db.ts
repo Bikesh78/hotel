@@ -1,4 +1,10 @@
-import { User, UserRole } from "../entity/index.js";
+import {
+  Categories,
+  Products,
+  User,
+  UserRole,
+  Variations,
+} from "../entity/index.js";
 import { DataSource } from "typeorm";
 import { DB_PASSWORD, DB_USER } from "./config.js";
 import "reflect-metadata";
@@ -11,7 +17,8 @@ export const appDataSource = new DataSource({
   password: DB_PASSWORD,
   database: "hotel",
   port: 3306,
-  entities: [User, UserRole],
+  entities: [User, UserRole, Variations, Products, Categories],
+  // entities: ["entity/*.ts"],
   // synchronize: true,
   synchronize: false,
   logging: false,

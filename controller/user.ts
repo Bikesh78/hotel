@@ -3,7 +3,7 @@ import { UserRole } from "../entity/UserRole.js";
 import bcrypt from "bcrypt";
 import { User } from "../entity/User.js";
 import { validate } from "class-validator";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../utils/config.js";
 
 interface UserType {
@@ -16,7 +16,7 @@ interface UserType {
 export const createRole = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const body = req.body;
@@ -48,7 +48,7 @@ export const createRole = async (
 export const getRoles = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const roles = await UserRole.find();
@@ -63,7 +63,7 @@ export const getRoles = async (
 export const createUser = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     console.log("body", req.body);
@@ -106,7 +106,7 @@ export const createUser = async (
 export const getUsers = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const users = await User.find({
