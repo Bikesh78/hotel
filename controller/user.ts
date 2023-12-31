@@ -3,6 +3,15 @@ import { UserRole } from "../entity/UserRole.js";
 import bcrypt from "bcrypt";
 import { User } from "../entity/User.js";
 import { validate } from "class-validator";
+import jwt, { JwtPayload } from "jsonwebtoken";
+import { TOKEN_SECRET } from "../utils/config.js";
+
+interface UserType {
+  id: number;
+  string: string;
+  role: string;
+  token: string;
+}
 
 export const createRole = async (
   req: Request,
@@ -11,6 +20,19 @@ export const createRole = async (
 ) => {
   try {
     const body = req.body;
+
+    const authorization = req.get("Authorization");
+
+    const token = authorization?.startsWith("Bearer ")
+      ? authorization?.replace("Bearer ", "")
+      : "";
+
+    const decodedToken: UserType = jwt.verify(token, TOKEN_SECRET) as UserType;
+
+    if (!decodedToken.id) {
+      return res.status(401).json({ error: "Invalid token" });
+    }
+
     const userRole = new UserRole();
     if (!body.role) {
       return res.status(400).json("Role field is required");
@@ -19,7 +41,6 @@ export const createRole = async (
     await userRole.save();
     return res.json({ userRole });
   } catch (error: any) {
-    // res.json({ error });
     next(error);
   }
 };
