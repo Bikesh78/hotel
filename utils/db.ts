@@ -1,32 +1,28 @@
-import {
-  Categories,
-  Products,
-  User,
-  UserRole,
-  Variations,
-} from "../entity/index.js";
-import { DataSource } from "typeorm";
+import { DataSource, DataSourceOptions } from "typeorm";
 import { DB_PASSWORD, DB_USER } from "./config.js";
 import "reflect-metadata";
-// import { migrations } from "../migration/index.js";
+import { SeederOptions, runSeeders } from "typeorm-extension";
+import { CategorySeeder } from "../seeds/productCategories.seeder.js";
+import { CategoryFactory } from "../seeds/productCategories.factory.js";
 
-export const appDataSource = new DataSource({
+const options: DataSourceOptions & SeederOptions = {
   type: "mysql",
   host: "localhost",
   username: DB_USER,
   password: DB_PASSWORD,
   database: "hotel",
   port: 3306,
-  entities: [User, UserRole, Variations, Products, Categories],
-  // entities: ["entity/*.ts"],
-  // synchronize: true,
+  entities: ["entity/**/*.ts"],
   synchronize: false,
   logging: false,
-  // migrations: migrations,
   migrations: ["migration/*.ts"],
-  // migrationsTableName: "custom_migration_table",
-  // entitySkipConstructor: true, // Indicates that TypeORM will skip constructors when deserializing entities from the database
-});
+  // seeds: ["seeds/**/*.seeder.ts"],
+  // factories: ["seeds/**/*.factory.ts"],
+  // seeds: [CategorySeeder],
+  // factories: [CategoryFactory],
+};
+
+export const appDataSource = new DataSource(options);
 
 export const connectToDatabase = async () => {
   try {
@@ -35,4 +31,11 @@ export const connectToDatabase = async () => {
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
+};
+
+export const seedDatabase = async () => {
+  await runSeeders(appDataSource, {
+    seeds: [CategorySeeder],
+    factories: [CategoryFactory],
+  });
 };
