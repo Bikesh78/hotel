@@ -1,6 +1,7 @@
 import {
   BaseEntity,
   Column,
+  DeleteDateColumn,
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -20,4 +21,7 @@ export class Categories extends BaseEntity {
 
   @OneToMany("Products", (product: Products) => product.category)
   product: Products;
+
+  @DeleteDateColumn()
+  deleteDate: Date;
 }
