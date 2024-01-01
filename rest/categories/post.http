@@ -1,0 +1,8 @@
+POST {{URL}}/api/category
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "name":"alcohol",
+  "description":"This is a description"
+}
