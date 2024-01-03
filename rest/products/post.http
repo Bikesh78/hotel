@@ -1,0 +1,13 @@
+POST {{URL}}/api/product
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+# When product doesn't have variations
+
+{
+  "name":"anto",
+  "description":"This is a description",
+  "base_price":500,
+  "is_bar_item":false,
+  "category_id":3
+}

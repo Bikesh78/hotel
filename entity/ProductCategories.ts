@@ -23,5 +23,5 @@ export class Categories extends BaseEntity {
   product: Products;
 
   @DeleteDateColumn()
-  deleteDate: Date;
+  deleteDate?: Date;
 }

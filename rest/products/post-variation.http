@@ -1,0 +1,24 @@
+POST {{URL}}/api/product
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+# When product has variations
+
+{
+  "name":"new product",
+  "description":"This is a description",
+  "is_bar_item":false,
+  "category_id":3,
+  "variations": [
+    {
+      "name": "Steam Momo",
+      "description":"This is a description",
+      "price": 100
+    },
+    {
+      "name": "Fry Momo",
+      "description":"This is a description",
+      "price": 200
+    }
+  ]
+}

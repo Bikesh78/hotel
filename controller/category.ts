@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 import { Categories } from "../entity/ProductCategories.js";
 import { validate } from "class-validator";
 
@@ -55,8 +55,11 @@ export const deleteCategories = async (
     const id = parseInt(req.params.id, 10);
 
     const category = await Categories.findOneBy({ id: id });
+    if (!category) {
+      return res.status(404).json({ error: "404 not found" });
+    }
 
-    await category?.softRemove();
+    await category?.remove();
     res.json({ message: "Deleted succesfully" });
   } catch (error) {
     next(error);

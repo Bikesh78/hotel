@@ -1,3 +1,2 @@
-DELETE {{URL}}/api/category/12
+GET {{URL}}/api/product
 Authorization: Bearer {{TOKEN}}
-

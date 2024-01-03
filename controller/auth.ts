@@ -7,7 +7,7 @@ import { TOKEN_SECRET } from "../utils/config.js";
 export const login = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const body = req.body;

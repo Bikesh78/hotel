@@ -3,6 +3,6 @@ Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 {
-  "name":"alcohol",
+  "name":"food",
   "description":"This is a description"
 }

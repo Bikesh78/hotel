@@ -28,9 +28,11 @@ export class Products extends BaseEntity {
   is_bar_item: boolean;
 
   @OneToMany("Variations", (variations: Variations) => variations.product)
-  variations: Variations;
+  variations: Variations[];
 
-  @ManyToOne("Categories", (categories: Categories) => categories.product)
+  @ManyToOne("Categories", (categories: Categories) => categories.product, {
+    cascade: true,
+  })
   @JoinColumn()
   category: Categories;
 }

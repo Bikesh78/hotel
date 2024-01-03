@@ -22,7 +22,9 @@ export class Variations extends BaseEntity {
   @Column()
   price: number;
 
-  @ManyToOne("Products", (products: Products) => products.variations)
+  @ManyToOne("Products", (products: Products) => products.variations, {
+    cascade: true,
+  })
   @JoinColumn()
   product: Products;
 }
