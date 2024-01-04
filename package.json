@@ -7,9 +7,10 @@
   "scripts": {
     "build": "npx tsc",
     "start": "ts-node-esm index.ts",
-    "dev": "nodemon -x ts-node-esm index.ts",
-    "bun": "bun --watch index.ts",
+    "dev:node": "nodemon -x ts-node-esm index.ts",
+    "dev:bun": "bun --watch index.ts",
     "migration:up": "npx typeorm-ts-node-esm migration:run  -d utils/db.ts",
+    "migration:down": "npx typeorm-ts-node-esm migration:revert -d utils/db.ts",
     "migration:generate": "npx typeorm-ts-node-esm migration:generate  -d utils/db.ts",
     "db:seed": "ts-node utils/seedDatabase.ts"
   },

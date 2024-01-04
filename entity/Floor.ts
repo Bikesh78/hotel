@@ -27,5 +27,7 @@ export class Floor extends BaseEntity {
   @OneToMany("HotelTable", (table: HotelTable) => table.floor, {
     cascade: true,
   })
-  hotel_table: HotelTable;
+  hotel_table: HotelTable[];
+  // @OneToMany("HotelTable", (table: HotelTable) => table.floor)
+  // hotel_table: HotelTable[];
 }

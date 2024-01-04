@@ -4,6 +4,7 @@ import {
   Entity,
   JoinColumn,
   ManyToMany,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -31,9 +32,11 @@ export class HotelTable extends BaseEntity {
   @Column({ type: "enum", enum: TableState, default: TableState.VACANT })
   state: TableState;
 
-  @OneToOne("Floor", (floor: Floor) => floor.hotel_table)
-  @JoinColumn()
-  floor: Floor;
+  @ManyToOne("Floor", (floor: Floor) => floor.hotel_table)
+  @JoinColumn({ name: "floor_id" })
+  // @JoinColumn()
+  // floor: Floor;
+  floor: number;
 
   @OneToMany("Session", (session: Session) => session.hotel_table)
   session: Session;
