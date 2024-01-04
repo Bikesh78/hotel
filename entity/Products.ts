@@ -3,12 +3,14 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import type { Categories } from "./ProductCategories.js";
 import type { Variations } from "./Variations.js";
+import type { Order } from "./Order.js";
 
 @Entity()
 export class Products extends BaseEntity {
@@ -35,4 +37,11 @@ export class Products extends BaseEntity {
   })
   @JoinColumn()
   category: Categories;
+
+  @ManyToMany("Order", (order: Order) => order.product)
+  orderInstance: Order;
+
+  // if variation is null
+  // @ManyToMany("Table", (table: Table) => table.product)
+  // table: Table;
 }

@@ -14,6 +14,7 @@ const options: DataSourceOptions & SeederOptions = {
   port: 3306,
   entities: ["entity/**/*.ts"],
   synchronize: false,
+  // synchronize: true,
   logging: false,
   migrations: ["migration/*.ts"],
   // seeds: ["seeds/**/*.seeder.ts"],
