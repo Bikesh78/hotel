@@ -24,6 +24,6 @@ export class Floor extends BaseEntity {
   })
   description: string;
 
-  @OneToMany("Table", (table: Table) => table.floor)
+  @OneToMany("Table", (table: Table) => table.floor, { cascade: true })
   table: Table;
 }
