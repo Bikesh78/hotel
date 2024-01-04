@@ -9,7 +9,6 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import type { Floor } from "./Floor.js";
-import type { Products } from "./Products.js";
 import type { Session } from "./Session.js";
 
 export enum TableState {
@@ -19,7 +18,7 @@ export enum TableState {
 }
 
 @Entity()
-export class Table extends BaseEntity {
+export class HotelTable extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -32,11 +31,11 @@ export class Table extends BaseEntity {
   @Column({ type: "enum", enum: TableState, default: TableState.VACANT })
   state: TableState;
 
-  @OneToOne("Floor", (floor: Floor) => floor.table)
+  @OneToOne("Floor", (floor: Floor) => floor.hotel_table)
   @JoinColumn()
   floor: Floor;
 
-  @OneToMany("Session", (session: Session) => session.table)
+  @OneToMany("Session", (session: Session) => session.hotel_table)
   session: Session;
 
   // @ManyToMany("Product", (product: Products) => product.table)

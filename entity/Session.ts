@@ -8,7 +8,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import type { Table } from "./Table.js";
+import type { HotelTable } from "./Table.js";
 import type { Order } from "./Order.js";
 import type { Customer } from "./Customer.js";
 
@@ -19,9 +19,9 @@ export class Session extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne("Table", (table: Table) => table.session)
+  @OneToOne("HotelTable", (table: HotelTable) => table.session)
   @JoinColumn()
-  table: Table;
+  hotel_table: HotelTable;
 
   @OneToMany("Order", (order: Order) => order.session)
   @JoinColumn()

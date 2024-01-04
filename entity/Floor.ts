@@ -5,7 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import type { Table } from "./Table.js";
+import type { HotelTable } from "./Table.js";
 
 @Entity()
 export class Floor extends BaseEntity {
@@ -24,6 +24,8 @@ export class Floor extends BaseEntity {
   })
   description: string;
 
-  @OneToMany("Table", (table: Table) => table.floor, { cascade: true })
-  table: Table;
+  @OneToMany("HotelTable", (table: HotelTable) => table.floor, {
+    cascade: true,
+  })
+  hotel_table: HotelTable;
 }
