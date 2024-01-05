@@ -4,27 +4,6 @@ import { validate } from "class-validator";
 import { Variations } from "../entity/Variations.js";
 import { Categories } from "../entity/ProductCategories.js";
 
-export const getProduct = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  try {
-    const products = await Products.find({
-      relations: {
-        variations: true,
-        category: true,
-      },
-    });
-
-    if (products) {
-      return res.json({ data: products });
-    }
-  } catch (error) {
-    next(error);
-  }
-};
-
 interface variations {
   name: string;
   description: string;
@@ -40,6 +19,34 @@ interface body {
   variations?: variations[];
   category_id: number;
 }
+
+export const getProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const products = await Products.find({
+      relations: {
+        variations: true,
+        category: true,
+      },
+      select: {
+        category: {
+          id: true,
+          name: true,
+          description: true,
+        },
+      },
+    });
+
+    if (products) {
+      return res.json({ data: products });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const postProduct = async (
   req: Request,
