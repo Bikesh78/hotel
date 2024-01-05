@@ -21,11 +21,13 @@ export class Session extends BaseEntity {
 
   @OneToOne("HotelTable", (table: HotelTable) => table.session)
   @JoinColumn()
-  hotel_table: HotelTable;
+  // hotel_table: HotelTable;
+  hotel_table: number;
 
   @OneToMany("Order", (order: Order) => order.session)
   @JoinColumn()
-  order: Order;
+  // order: Order;
+  order: number;
 
   @Column()
   bill_amount: number;
@@ -39,7 +41,8 @@ export class Session extends BaseEntity {
 
   @OneToOne("Customer", (customer: Customer) => customer.session)
   @JoinColumn()
-  customer: Customer;
+  // customer: Customer;
+  customer: number;
 
   @CreateDateColumn()
   created_date: Date;

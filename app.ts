@@ -7,6 +7,7 @@ import { categoryRouter } from "./routes/category.js";
 import { productRouter } from "./routes/product.js";
 import { floorRouter } from "./routes/floor.js";
 import { tableRouter } from "./routes/table.js";
+import { customerRouter } from "./routes/customer.js";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use("/api/category", categoryRouter);
 app.use("/api/product", productRouter);
 app.use("/api/floor", floorRouter);
 app.use("/api/table", tableRouter);
+app.use("/api/customer", customerRouter);
 
 app.use(errorHandler);
 

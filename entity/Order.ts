@@ -20,11 +20,13 @@ export class Order extends BaseEntity {
 
   @ManyToMany("Products", (product: Products) => product.orderInstance)
   @JoinColumn()
-  product: Products;
+  // product: Products;
+  product: number;
 
   @ManyToMany("Variations", (variation: Variations) => variation.orderInstance)
   @JoinColumn()
-  variation: Variations;
+  // variation: Variations;
+  variation: number;
 
   @Column()
   quantity: number;
@@ -37,5 +39,6 @@ export class Order extends BaseEntity {
   // status: OrderStatus;
 
   @OneToOne("Session", (session: Session) => session.order)
-  session: Session;
+  // session: Session;
+  session: number;
 }

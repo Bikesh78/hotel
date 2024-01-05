@@ -29,7 +29,7 @@ export const postTable = async (
   next: NextFunction,
 ) => {
   try {
-    const body = req.body;
+    const body: tableBody = req.body;
     const { name, capacity, state, floor_id } = body;
 
     const table = new HotelTable();

@@ -9,7 +9,7 @@ import {
 import type { Session } from "./Session.js";
 
 @Entity()
-export class Customer extends BaseEntity {
+export class Customer {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -23,6 +23,7 @@ export class Customer extends BaseEntity {
   paid_amount: number;
 
   @OneToMany("Session", (session: Session) => session.customer)
-  @JoinColumn()
-  session: Session;
+  @JoinColumn({ name: "session_id" })
+  // session: Session;
+  session: number;
 }
