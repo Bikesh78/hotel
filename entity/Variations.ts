@@ -5,6 +5,8 @@ import {
   JoinColumn,
   ManyToMany,
   ManyToOne,
+  OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import type { Products } from "./Products.js";
@@ -30,6 +32,7 @@ export class Variations extends BaseEntity {
   @JoinColumn()
   product: Products;
 
-  @ManyToMany("Order", (order: Order) => order.variation)
-  orderInstance: Order;
+  @OneToMany("Order", (order: Order) => order.variation)
+  // orderInstance: Order;
+  orderInstance: number;
 }

@@ -3,7 +3,10 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
   ManyToMany,
+  ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -11,34 +14,31 @@ import type { Products } from "./Products.js";
 import type { Variations } from "./Variations.js";
 import type { Session } from "./Session.js";
 
-// export type OrderStatus = "pending" | "delivered" | "cancelled";
+export type OrderStatus = "pending" | "delivered" | "cancelled";
 
 @Entity()
 export class Order extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToMany("Products", (product: Products) => product.orderInstance)
+  @ManyToOne("Products", (product: Products) => product.orderInstance)
   @JoinColumn()
-  // product: Products;
   product: number;
 
-  @ManyToMany("Variations", (variation: Variations) => variation.orderInstance)
+  @ManyToOne("Variations", (variation: Variations) => variation.orderInstance)
   @JoinColumn()
-  // variation: Variations;
   variation: number;
 
   @Column()
   quantity: number;
 
-  // @Column({
-  //   type: "enum",
-  //   enum: ["pending", "delivered", "cancelled"],
-  //   default: "pending",
-  // })
-  // status: OrderStatus;
+  @Column({
+    type: "enum",
+    enum: ["pending", "delivered", "cancelled"],
+    default: "pending",
+  })
+  status: OrderStatus;
 
-  @OneToOne("Session", (session: Session) => session.order)
-  // session: Session;
+  @ManyToOne("Session", (session: Session) => session.order)
   session: number;
 }

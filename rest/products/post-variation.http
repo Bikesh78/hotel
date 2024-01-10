@@ -5,19 +5,19 @@ Authorization: Bearer {{TOKEN}}
 # When product has variations
 
 {
-  "name":"new product",
+  "name":"Ruslan",
   "description":"This is a description",
   "is_bar_item":false,
-  "category_id":3,
+  "category_id":2,
   "variations": [
     {
-      "name": "Steam Momo",
-      "description":"This is a description",
+      "name": "20 ml",
+      "description":"20 ml of Ruslan",
       "price": 100
     },
     {
-      "name": "Fry Momo",
-      "description":"This is a description",
+      "name": "40 ml",
+      "description":"40 ml of Ruslan",
       "price": 200
     }
   ]

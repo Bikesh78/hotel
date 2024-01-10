@@ -4,6 +4,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -19,7 +20,7 @@ export class Session extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne("HotelTable", (table: HotelTable) => table.session)
+  @ManyToOne("HotelTable", (table: HotelTable) => table.session)
   @JoinColumn()
   // hotel_table: HotelTable;
   hotel_table: number;

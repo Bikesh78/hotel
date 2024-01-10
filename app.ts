@@ -1,13 +1,17 @@
 import express from "express";
 import cors from "cors";
-import { userRouter } from "./routes/user.js";
 import { authMiddleware, errorHandler } from "./utils/middleware.js";
-import { authRouter } from "./routes/auth.js";
-import { categoryRouter } from "./routes/category.js";
-import { productRouter } from "./routes/product.js";
-import { floorRouter } from "./routes/floor.js";
-import { tableRouter } from "./routes/table.js";
-import { customerRouter } from "./routes/customer.js";
+import {
+  authRouter,
+  categoryRouter,
+  customerRouter,
+  floorRouter,
+  orderRouter,
+  productRouter,
+  tableRouter,
+  userRouter,
+} from "./routes/index.js";
+import { variationRouter } from "./routes/variation.js";
 
 const app = express();
 
@@ -15,16 +19,20 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+// public routes
 app.use("/api", authRouter);
 
 app.use(authMiddleware);
 
+// private routes
 app.use("/api/user", userRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/product", productRouter);
+app.use("/api/variation", variationRouter);
 app.use("/api/floor", floorRouter);
 app.use("/api/table", tableRouter);
 app.use("/api/customer", customerRouter);
+app.use("/api/order", orderRouter);
 
 app.use(errorHandler);
 

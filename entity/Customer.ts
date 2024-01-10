@@ -16,10 +16,10 @@ export class Customer {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ default: 0 })
   due_amount: number;
 
-  @Column()
+  @Column({ default: 0 })
   paid_amount: number;
 
   @OneToMany("Session", (session: Session) => session.customer)
