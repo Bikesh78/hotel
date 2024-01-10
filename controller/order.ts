@@ -49,8 +49,11 @@ const createSession = async (table: HotelTable): Promise<Session> => {
   return session;
 };
 
-const calculateTotalCost = async (orders: Order[]): Promise<number> => {
-  let totalCost = 0;
+const calculateTotalCost = async (
+  orders: Order[],
+  session: Session,
+): Promise<number> => {
+  let totalCost = session.bill_amount || 0;
   for (const order of orders) {
     let price = 0;
     if (order.variation) {
@@ -73,11 +76,12 @@ export const getOrders = async (
 ) => {
   try {
     const orders = await Order.find({
-      relations: ["session", "variation"],
+      relations: ["session", "variation", "product"],
     });
     if (!orders.length) {
       return res.json({ error: "Orders not found" });
     }
+
     res.send({ data: orders });
   } catch (error) {
     next(error);
@@ -100,7 +104,7 @@ export const placeOrder = async (
         session: true,
       },
     });
-    console.log("table", table);
+    // console.log("table", table);
 
     if (!table) {
       return res.status(404).json({ error: "Table not found" });
@@ -134,7 +138,7 @@ export const placeOrder = async (
       orders.push(order);
     }
 
-    const totalCost = await calculateTotalCost(orders);
+    const totalCost = await calculateTotalCost(orders, session);
 
     session.bill_amount = totalCost;
     await session.save();
