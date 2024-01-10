@@ -156,3 +156,37 @@ export const placeOrder = async (
     next(error);
   }
 };
+
+export const cancelOrder = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const orderId = Number(req.params.id);
+    const order = await Order.findOne({
+      where: {
+        id: orderId,
+      },
+      relations: ["session", "product", "variation"],
+    });
+    console.log("product ddd", order?.variation);
+    // console.log("session ddd", order?.session);
+    if (!order || order.status === "cancelled") {
+      return res.status(204).json({ error: "Order not found" });
+    }
+
+    // const session = await Session.findOneBy({ id: order.session.id });
+    // console.log("session", session);
+
+    // if(order.product){
+    //
+    // }
+
+    order.status = "cancelled";
+    await order.save();
+    return res.status(200).json({ order });
+  } catch (error) {
+    next(error);
+  }
+};

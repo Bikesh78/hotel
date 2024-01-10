@@ -18,12 +18,12 @@ export class Order extends BaseEntity {
   id: number;
 
   @ManyToOne("Products", (product: Products) => product.orderInstance)
-  @JoinColumn()
+  @JoinColumn({ name: "product_id" })
   product: number;
   // product: Products;
 
   @ManyToOne("Variations", (variation: Variations) => variation.orderInstance)
-  @JoinColumn()
+  @JoinColumn({ name: "variation_id" })
   variation: number;
   // variation: Variations;
 
@@ -41,6 +41,6 @@ export class Order extends BaseEntity {
   status: OrderStatus;
 
   @ManyToOne("Session", (session: Session) => session.order)
-  @JoinColumn()
+  @JoinColumn({ name: "session_id" })
   session: number;
 }
