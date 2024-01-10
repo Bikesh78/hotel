@@ -3,11 +3,7 @@ import {
   Column,
   Entity,
   JoinColumn,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
-  OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import type { Products } from "./Products.js";
@@ -24,13 +20,18 @@ export class Order extends BaseEntity {
   @ManyToOne("Products", (product: Products) => product.orderInstance)
   @JoinColumn()
   product: number;
+  // product: Products;
 
   @ManyToOne("Variations", (variation: Variations) => variation.orderInstance)
   @JoinColumn()
   variation: number;
+  // variation: Variations;
 
   @Column()
   quantity: number;
+
+  @Column()
+  note: string;
 
   @Column({
     type: "enum",
@@ -40,5 +41,6 @@ export class Order extends BaseEntity {
   status: OrderStatus;
 
   @ManyToOne("Session", (session: Session) => session.order)
+  @JoinColumn()
   session: number;
 }

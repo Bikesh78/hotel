@@ -39,7 +39,7 @@ export class HotelTable extends BaseEntity {
   floor: number;
 
   @OneToMany("Session", (session: Session) => session.hotel_table)
-  session: Session;
+  session?: Session[];
 
   // @ManyToMany("Product", (product: Products) => product.table)
   // @JoinColumn()

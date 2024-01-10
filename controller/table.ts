@@ -16,7 +16,11 @@ export const getTables = async (
   next: NextFunction,
 ) => {
   try {
-    const tables = await HotelTable.find();
+    const tables = await HotelTable.find({
+      relations: {
+        session: true,
+      },
+    });
     res.json({ data: tables });
   } catch (error) {
     next(error);
