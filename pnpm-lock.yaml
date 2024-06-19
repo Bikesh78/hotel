@@ -25,13 +25,13 @@ dependencies:
     version: 9.0.2
   mysql2:
     specifier: ^3.6.5
-    version: 3.9.7
+    version: 3.9.8
   reflect-metadata:
     specifier: ^0.2.1
     version: 0.2.1
   typeorm:
     specifier: ^0.3.17
-    version: 0.3.17(mysql2@3.9.7)(ts-node@10.9.2)
+    version: 0.3.17(mysql2@3.9.8)(ts-node@10.9.2)
 
 devDependencies:
   '@faker-js/faker':
@@ -1189,8 +1189,8 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: false
 
-  /mysql2@3.9.7:
-    resolution: {integrity: sha512-KnJT8vYRcNAZv73uf9zpXqNbvBG7DJrs+1nACsjZP1HMJ1TgXEy8wnNilXAn/5i57JizXKtrUtwDB7HxT9DDpw==}
+  /mysql2@3.9.8:
+    resolution: {integrity: sha512-+5JKNjPuks1FNMoy9TYpl77f+5frbTklz7eb3XDwbpsERRLEeXiW2PDEkakYF50UuKU2qwfGnyXpKYvukv8mGA==}
     engines: {node: '>= 8.0'}
     dependencies:
       denque: 2.1.0
@@ -1714,11 +1714,11 @@ packages:
       rapiq: 0.9.0
       reflect-metadata: 0.1.14
       smob: 1.4.1
-      typeorm: 0.3.17(mysql2@3.9.7)(ts-node@10.9.2)
+      typeorm: 0.3.17(mysql2@3.9.8)(ts-node@10.9.2)
       yargs: 17.7.2
     dev: true
 
-  /typeorm@0.3.17(mysql2@3.9.7)(ts-node@10.9.2):
+  /typeorm@0.3.17(mysql2@3.9.8)(ts-node@10.9.2):
     resolution: {integrity: sha512-UDjUEwIQalO9tWw9O2A4GU+sT3oyoUXheHJy4ft+RFdnRdQctdQ34L9SqE2p7LdwzafHx1maxT+bqXON+Qnmig==}
     engines: {node: '>= 12.9.0'}
     hasBin: true
@@ -1786,7 +1786,7 @@ packages:
       dotenv: 16.3.1
       glob: 8.1.0
       mkdirp: 2.1.6
-      mysql2: 3.9.7
+      mysql2: 3.9.8
       reflect-metadata: 0.1.14
       sha.js: 2.4.11
       ts-node: 10.9.2(@types/node@20.10.5)(typescript@5.3.3)
