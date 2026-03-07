@@ -1,6 +1,6 @@
 import { NextFunction, Response, Request } from "express";
 import { UserRole } from "../entity/UserRole.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { User } from "../entity/User.js";
 import { validate } from "class-validator";
 import jwt from "jsonwebtoken";

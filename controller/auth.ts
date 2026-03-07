@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { User } from "../entity/User.js";
-import * as bcrypt from "bcrypt";
+import * as bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../utils/config.js";
 

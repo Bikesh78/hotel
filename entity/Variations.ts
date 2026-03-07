@@ -17,13 +17,13 @@ export class Variations extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({type:"varchar"})
   name: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type:"varchar" })
   description: string;
 
-  @Column()
+  @Column({type:"number"})
   price: number;
 
   @ManyToOne("Products", (products: Products) => products.variations, {

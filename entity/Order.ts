@@ -27,10 +27,10 @@ export class Order extends BaseEntity {
   variation: number;
   // variation: Variations;
 
-  @Column()
+  @Column({type:"number"})
   quantity: number;
 
-  @Column()
+  @Column({type:"varchar"})
   note: string;
 
   @Column({

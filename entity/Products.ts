@@ -18,16 +18,16 @@ export class Products extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({type:"varchar"})
   name: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type:"varchar" })
   description: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type:"number" })
   base_price: number;
 
-  @Column()
+  @Column({type:"boolean"})
   is_bar_item: boolean;
 
   @OneToMany("Variations", (variations: Variations) => variations.product)

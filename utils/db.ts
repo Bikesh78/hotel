@@ -1,6 +1,5 @@
 import { DataSource, DataSourceOptions } from "typeorm";
 import { DB_PASSWORD, DB_USER } from "./config.js";
-import "reflect-metadata";
 import { SeederOptions, runSeeders } from "typeorm-extension";
 import { CategorySeeder } from "../seeds/productCategories.seeder.js";
 import { CategoryFactory } from "../seeds/productCategories.factory.js";

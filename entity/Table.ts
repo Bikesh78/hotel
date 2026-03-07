@@ -23,10 +23,10 @@ export class HotelTable extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
+  @Column({ unique: true, type:"varchar" })
   name: string;
 
-  @Column()
+  @Column({type:"number"})
   capacity: number;
 
   @Column({ type: "enum", enum: TableState, default: TableState.VACANT })

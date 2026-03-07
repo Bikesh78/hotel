@@ -30,7 +30,7 @@ export class Session extends BaseEntity {
   // order: Order;
   order: number;
 
-  @Column()
+  @Column({type:"number"})
   bill_amount: number;
 
   @Column({

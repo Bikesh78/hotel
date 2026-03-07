@@ -13,13 +13,13 @@ export class Customer {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({type:"varchar"})
   name: string;
 
-  @Column({ default: 0 })
+  @Column({ default: 0, type:"number" })
   due_amount: number;
 
-  @Column({ default: 0 })
+  @Column({ default: 0 , type:"number"})
   paid_amount: number;
 
   @OneToMany("Session", (session: Session) => session.customer)

@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import app from "./app.js";
 import { PORT } from "./utils/config.js";
 import { connectToDatabase } from "./utils/db.js";
