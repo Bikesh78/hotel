@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^3.0.3",
-    "class-validator": "^0.14.0",
+    "class-validator": "^0.14.4",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.22.1",
@@ -43,7 +43,7 @@
   "packageManager": "pnpm@10.12.4+sha512.5ea8b0deed94ed68691c9bad4c955492705c5eeb8a87ef86bc62c74a26b037b08ff9570f108b2e4dbd1dd1a9186fea925e527f141c648e85af45631074680184",
   "pnpm": {
     "overrides": {
-      "minimatch": "9.0.6"
+      "minimatch": "9.0.7"
     }
   }
 }
